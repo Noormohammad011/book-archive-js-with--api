@@ -120,7 +120,7 @@ const displayBooks = (data) => {
     displayContainer.classList.remove('d-none')
   }
 }
-
+//author name
 const authorName = (auhterArray) => {
   const authorName = []
 
@@ -130,6 +130,8 @@ const authorName = (auhterArray) => {
 
   return authorName
 }
+
+//publisher name
 const publisherName = (auhterArray) => {
   const publisherName = []
 
