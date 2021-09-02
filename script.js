@@ -3,7 +3,7 @@ const btnHandler = document.getElementById('btnHandler')
 const resultFound = document.getElementById('resultFound')
 const error = document.getElementById('error')
 const displayContainer = document.getElementById('displayContainer')
-
+const spinner = document.getElementById('spinner')
 // globally declear
 resultFound.innerText = 0
 
@@ -14,6 +14,8 @@ const fetchData = async (value = 'javascript') => {
 
     if (data) {
       resultFound.innerText = Number(data.numFound)
+    } else {
+      resultFound.innerText = 0
     }
     displayBooks(data.docs)
   } catch (err) {
@@ -28,6 +30,9 @@ btnHandler.addEventListener('click', (e) => {
 
   // Check for empty
   if (BookSearch.trim()) {
+    //display spinner
+    spinner.classList.remove('d-none')
+    displayContainer.classList.add('d-none')
     fetchData(searchElement.value)
     searchElement.value = ''
   } else {
@@ -64,15 +69,12 @@ const displayBooks = (data) => {
                         </h6>
                         </h5>
                         <br />
-
                         <h5 class="card-text">
                         Publisher:
                         <h6>
-                        ${publisherName(item.publisher && item.publisher)}
+                        ${publisherName(item.publisher && item.publisher)},
                         </h6>
                         </h5>
-
-                        
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">
@@ -86,6 +88,9 @@ const displayBooks = (data) => {
             </div>
         `
     })
+
+    spinner.classList.add('d-none')
+    displayContainer.classList.remove('d-none')
   }
 }
 
