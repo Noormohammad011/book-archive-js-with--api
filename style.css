@@ -4,7 +4,7 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
-
-.img_height{
-  height: 100% !important;
+.img_size {
+  width: 100%;
+  height: 300px;
 }

@@ -21,8 +21,6 @@ const fetchData = async (value = 'javascript') => {
   }
 }
 
-fetchData()
-
 btnHandler.addEventListener('click', (e) => {
   e.preventDefault()
   console.log()
@@ -45,45 +43,67 @@ const displayBooks = (data) => {
       error.textContent = ''
     }, 3000)
   } else {
+    displayContainer.innerHTML = ''
     data.slice(0, 10).forEach((item) => {
       displayContainer.innerHTML += `
-      <div class="col">
-      <div class="card">
-                        <img src="https://covers.openlibrary.org/b/id/${
-                          item.cover_i && item.cover_i
-                        }-M.jpg" class="img-fluid rounded-start" 
-                         alt="${item.title ? item.title : ''}">
-            <div class="card-body">
-                <h5 class="card-title">Book Name:
-                                 ${item.title ? item.title : ''}
-                                </h5>
-   
-  </div>
-  <div class="card-body">
-   <div class="card-body">
-                                <h5 class="card-title">Book Name:
-                                 ${item.title ? item.title : ''}
-                                </h5>
-                                <p class="card-text">Author Name:
-                                    <ul class="list-group">
-                                    <li class="list-group-item">
-                                  ${item.author_name[0]}
-                                  </li>
-                                  </ul>
-                               
-                                </p>
-                                <p class="card-text"><small class="text-muted">First Published:
-                                ${
-                                  item.first_publish_year
-                                    ? item.first_publish_year
-                                    : ''
-                                }</small></p>
-                            </div>
-  </div>
-</div>
-    
+          <div class="col mb-3">
+                <div class="card h-100">
+                    <img src="https://covers.openlibrary.org/b/id/${
+                      item.cover_i && item.cover_i
+                    }-M.jpg" class="card-img-top img-fluid img_size" 
+                     alt="${item.title ? item.title : ''}">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                        Book Name:${item.title ? item.title : ''}
+                        </h5>
+                        <br />
+                        <h5 class="card-text">
+                        Auther Name:
+                        <h6>
+                        ${authorName(item.author_name && item.author_name)},
+                        </h6>
+                        </h5>
+                        <br />
 
+                        <h5 class="card-text">
+                        Publisher:
+                        <h6>
+                        ${publisherName(item.publisher && item.publisher)}
+                        </h6>
+                        </h5>
+
+                        
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                        First Published:
+                        ${
+                          item.first_publish_year ? item.first_publish_year : ''
+                        }
+                        </small>
+                    </div>
+                </div>
+            </div>
         `
     })
   }
+}
+
+const authorName = (auhterArray) => {
+  const authorName = []
+
+  auhterArray.forEach((value) => {
+    authorName.push(value)
+  })
+
+  return authorName
+}
+const publisherName = (auhterArray) => {
+  const publisherName = []
+
+  auhterArray.forEach((value) => {
+    publisherName.push(value)
+  })
+
+  return publisherName
 }
