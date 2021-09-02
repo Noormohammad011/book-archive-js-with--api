@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+
+    <!-- external css -->
+    <link rel="stylesheet" href="style.css">
+    <title>BookArchive</title>
+</head>
+
+<body>
+    <!-- main heading -->
+    <h1 class="text-center mt-4"><span style="color: orange">B</span>ook Archive <span><i class="fas fa-book-open"
+                style="color: orange"></i></span></h1>
+
+    <!-- search bar -->
+    <div class="container">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search Book" aria-label="Search Book"
+                aria-describedby="btnHandler" id="searchElement">
+            <button class="btn btn-outline-secondary" type="button" id="btnHandler">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="text-center">
+            <h2 id="error"></h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="shadow-lg p-3 mb-5 bg-body rounded w-50 mx-auto">Result Found: <span id="resultFound"></span></div>
+    </div>
+
+    <!-- grid layout for desplay -->
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 d-flex justify-content-center align-items-center"
+            id='displayContainer'>
+            <!-- displaying books -->
+            
+
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

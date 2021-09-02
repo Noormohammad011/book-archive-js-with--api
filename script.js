@@ -1,0 +1,89 @@
+const searchElement = document.getElementById('searchElement')
+const btnHandler = document.getElementById('btnHandler')
+const resultFound = document.getElementById('resultFound')
+const error = document.getElementById('error')
+const displayContainer = document.getElementById('displayContainer')
+
+// globally declear
+resultFound.innerText = 0
+
+const fetchData = async (value = 'javascript') => {
+  try {
+    const res = await fetch(`http://openlibrary.org/search.json?q=${value}`)
+    const data = await res.json()
+
+    if (data) {
+      resultFound.innerText = Number(data.numFound)
+    }
+    displayBooks(data.docs)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+fetchData()
+
+btnHandler.addEventListener('click', (e) => {
+  e.preventDefault()
+  console.log()
+  const BookSearch = searchElement.value
+
+  // Check for empty
+  if (BookSearch.trim()) {
+    fetchData(searchElement.value)
+    searchElement.value = ''
+  } else {
+    alert('Please enter a search with book name')
+  }
+})
+
+const displayBooks = (data) => {
+  if (data.status === '404' || data.length === 0) {
+    error.textContent = 'Result Not Found ✖'
+    searchElement.value = ''
+    setTimeout(function () {
+      error.textContent = ''
+    }, 3000)
+  } else {
+    data.slice(0, 10).forEach((item) => {
+      displayContainer.innerHTML += `
+      <div class="col">
+      <div class="card">
+                        <img src="https://covers.openlibrary.org/b/id/${
+                          item.cover_i && item.cover_i
+                        }-M.jpg" class="img-fluid rounded-start" 
+                         alt="${item.title ? item.title : ''}">
+            <div class="card-body">
+                <h5 class="card-title">Book Name:
+                                 ${item.title ? item.title : ''}
+                                </h5>
+   
+  </div>
+  <div class="card-body">
+   <div class="card-body">
+                                <h5 class="card-title">Book Name:
+                                 ${item.title ? item.title : ''}
+                                </h5>
+                                <p class="card-text">Author Name:
+                                    <ul class="list-group">
+                                    <li class="list-group-item">
+                                  ${item.author_name[0]}
+                                  </li>
+                                  </ul>
+                               
+                                </p>
+                                <p class="card-text"><small class="text-muted">First Published:
+                                ${
+                                  item.first_publish_year
+                                    ? item.first_publish_year
+                                    : ''
+                                }</small></p>
+                            </div>
+  </div>
+</div>
+    
+
+        `
+    })
+  }
+}
